@@ -2,157 +2,213 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 public class OnOffClick {
-	private String green_w;
-	private String red_w;
+	private final int milsec = 1000;
 	
-	GetNames names = new GetNames();
+	Timeline timeline;										//timeline object that makes the timer possible
+	public int timepassed; 									//keeps track of the time passed
+															//These variables represent the points scored by each wrestler
+	Main names = new Main();
+	Match currentMatch = new CollegeMatch();
+	public String redPoints;
+	public String greenPoints;
+	public String p;										//p stands for period as in what period the match is in
 	
-	red_w = names.getRed();
-	green_w = names.getGreen();
+															//the ActionListener Class adds points to each wrestler's 
+	ActionListener red = new ActionListener();				//Score as the match goes on as well as keeping track of the current period
+	ActionListener green = new ActionListener();
+	ActionListener period = new ActionListener();
 	
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+	@FXML private Label main_timer_label;					//These are declaring the label names for labels in the UI						
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private Label red_score;
+    @FXML private Label green_score;
+    @FXML private Button start_button;
+    @FXML private Button stop_button;
+    @FXML private Label period_label;
+    @FXML private Label green_label;
+    @FXML private Label red_label;
+     
+    														//This marks the begining of Button Related Clicks
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
-    @FXML // fx:id="red_score"
-    private Label red_score; // Value injected by FXMLLoader
-
-    @FXML // fx:id="green_score"
-    private Label green_score; // Value injected by FXMLLoader
-
-    @FXML // fx:id="main_timer_label"
-    private Label main_timer_label; // Value injected by FXMLLoader
-
-    @FXML // fx:id="start_stop_button"
-    private Button start_stop_button; // Value injected by FXMLLoader
-
-    @FXML // fx:id="period_label"
-    private Label period_label; // Value injected by FXMLLoader
+    @FXML													//This starts the Timer
+    void startClicked(ActionEvent event) {
+		timeline.play();
+    }
     
-    @FXML // fx:id="period_label"
-    private Label green_label; // Value injected by FXMLLoader
-
-    @FXML // fx:id="period_label"
-    private Label red_label; // Value injected by FXMLLoader
+    @FXML													//this pauses the Timer
+    void stopClicked(ActionEvent event) {
+		timeline.pause();
+    }
     
+    @FXML
+    void resetClicked(ActionEvent event) {					//Resets the timer 
+    	timeline.stop();
+    	timepassed = 0;
+    	main_timer_label.setText("00:00");
+    }
+	
+    @FXML
+    void redOne(ActionEvent event) {						//calls ActionListener to add 1 point for red on the scoreboard
+    	if (p == "1")
+    		currentMatch.setRedp1(1);
+    	if (p == "2")
+    		currentMatch.setRedp2(1);
+    	if (p == "3")
+    		currentMatch.setRedp1(1);
+    	if (p == "OT1")
+    		currentMatch.setRedp2(1);
+    	if (p == "OT2")
+    		currentMatch.setRedp1(1);
+    	if (p == "OT3")
+    		currentMatch.setRedp2(1);
+    	if (p == "OT4")
+    		currentMatch.setRedp1(1);
+    	if (p == "OT5")
+    		currentMatch.setRedp2(1);
+    	if (p == "OT6")
+    		currentMatch.setRedp1(1);
 
-    @FXML
-    void startStopClicked(ActionEvent event) {
-
+    	redPoints = red.addOne();
+    	red_score.setText(redPoints);
     }
     @FXML
-    void redOne(ActionEvent event) {
-    	red_score.setText("1");
+    void redTwo(ActionEvent event) {						//calls ActionListener to add 2 points for red to the scoreboard
+    	if (p == "1")
+    		currentMatch.setRedp1(2);
+    	if (p == "2")
+    		currentMatch.setRedp2(2);
+    	if (p == "3")
+    		currentMatch.setRedp1(2);
+    	if (p == "OT1")
+    		currentMatch.setRedp2(2);
+    	if (p == "OT2")
+    		currentMatch.setRedp1(2);
+    	if (p == "OT3")
+    		currentMatch.setRedp2(2);
+    	if (p == "OT4")
+    		currentMatch.setRedp1(2);
+    	if (p == "OT5")
+    		currentMatch.setRedp2(2);
+    	if (p == "OT6")
+    		currentMatch.setRedp1(2);
+    	
+    	redPoints = red.addTwo();
+    	red_score.setText(redPoints);
     }
     @FXML
-    void redTwo(ActionEvent event) {
-    	red_score.setText("2");
+    void redFour(ActionEvent event) {						//calls ActionListener to add 4 points for red to the scoreboard
+    	if (p == "1")
+    		currentMatch.setRedp1(4);
+    	if (p == "2")
+    		currentMatch.setRedp2(4);
+    	if (p == "3")
+    		currentMatch.setRedp1(4);
+    	if (p == "OT1")
+    		currentMatch.setRedp2(4);
+    	if (p == "OT2")
+    		currentMatch.setRedp1(4);
+    	if (p == "OT3")
+    		currentMatch.setRedp2(4);
+    	if (p == "OT4")
+    		currentMatch.setRedp1(4);
+    	if (p == "OT5")
+    		currentMatch.setRedp2(4);
+    	if (p == "OT6")
+    		currentMatch.setRedp1(4);
+    	
+    	redPoints = red.addFour();
+    	red_score.setText(redPoints);
+    }
+    
+    @FXML
+    void redMinus(ActionEvent event) {						//calls ActionListener to take points off the scoreboard for red
+    	redPoints = red.minus();
+    	red_score.setText(redPoints);
+    }
+    
+    @FXML
+    void greenOne(ActionEvent event) {						//calls ActionListener to add 1 point for green to the scoreboard
+    	greenPoints = green.addOne();
+    	green_score.setText(greenPoints);
     }
     @FXML
-    void redFour(ActionEvent event) {
-    	red_score.setText("4");
+    void greenTwo(ActionEvent event) {						//calls ActionListener to add 2 points for green to the scoreboard
+    	greenPoints = green.addTwo();
+    	green_score.setText(greenPoints);
     }
     @FXML
-    void greenOne(ActionEvent event) {
-    	green_score.setText("1");
+    void greenFour(ActionEvent event) {						//calls ActionListener to add 4 points for green to the scoreboard
+    	greenPoints = green.addFour();
+    	green_score.setText(greenPoints);
     }
+    
     @FXML
-    void greenTwo(ActionEvent event) {
-    	green_score.setText("2");
+    void greenMinus(ActionEvent event) {					//calls ActionListener to take points off of the scoreboard for green
+    	greenPoints = green.minus();
+    	green_score.setText(greenPoints);
     }
-    @FXML
-    void greenFour(ActionEvent event) {
-    	green_score.setText("4");
+    
+    @FXML													//moves the match to the second period
+    void forward(ActionEvent event) {
+    	p = period.nextPeriod();
+    	period_label.setText(p);
     }
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    
+    @FXML													//moves the match back a period
+    void back(ActionEvent event) {
+    	p = period.backPeriod();
+    	period_label.setText(p);
+    }
+    
+    														// This method is called by the FXMLLoader when initialization is complete
+    @FXML 
     void initialize() {
+    														//assert stuff is all auto generated
         assert red_score != null : "fx:id=\"red_score\" was not injected: check your FXML file 'GUI.fxml'.";
         assert green_score != null : "fx:id=\"green_score\" was not injected: check your FXML file 'GUI.fxml'.";
         assert main_timer_label != null : "fx:id=\"main_timer_label\" was not injected: check your FXML file 'GUI.fxml'.";
-        assert start_stop_button != null : "fx:id=\"start_stop_button\" was not injected: check your FXML file 'GUI.fxml'.";
+        assert start_button != null : "fx:id=\"start_button\" was not injected: check your FXML file 'GUI.fxml'.";
+        assert stop_button != null : "fx:id=\"stop_button\" was not injected: check your FXML file 'GUI.fxml'.";
         assert period_label != null : "fx:id=\"period_label\" was not injected: check your FXML file 'GUI.fxml'.";
-
-        red_label.setText();
-    }
-}
-
-/*
-import java.util.Scanner;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
-public class OnOffClick {
-
-    @FXML
-    private Button start_stop_button;
-
-    @FXML
-    private Label main_timer_label;
-
-    Scanner scan = new Scanner(System.in);
-    double tlen = scan.nextDouble()*60;
-    String it;
-    
-	Timer t1 = new Timer();
-	
-	boolean tf = true;
-    @FXML
-    void startStopClicked(ActionEvent event) {
-    	do {
-    	t1.startTimer(tlen);
-    	t1.stopTimer(1000);
-    	it = " " +tlen;
-    	main_timer_label.setText(it);
-    	}while(tlen>0);
+        
+        													//Sets the names of each wrestler in the scoreboard
+        green_label.setText(names.getGreen());
+        red_label.setText(names.getRed());
+        
+        													//creates timeline function that can be started or stopped by a simple 
+    	timeline = new Timeline(new KeyFrame(Duration.millis(milsec), (ActionEvent ae) -> {
+			
+    		timepassed += 1;
+    		int min;
+			int sec;
+			String stringtime;
+			
+			min = timepassed/60;
+			sec = timepassed%60;
+			
+			if(sec < 10) {									//main_timer_label.setText(min + ":0" + sec); for displaying on the main timer
+				stringtime = "0" + Integer.toString(min) + ":0" + Integer.toString(sec);
+			}
+			else {											//main_timer_label.setText(min + ":" + sec); for displaying on the main timer
+				stringtime = "0" + Integer.toString(min) + ":" + Integer.toString(sec);
+			}
+			String tps = stringtime;
+			main_timer_label.setText(tps);
+		}));
+		timeline.setCycleCount(Animation.INDEFINITE);
+    	
     }
 
 }
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
-
-public class OnOffClick implements Initializable{
-
-    @FXML private Label main_timer_label;
-    @FXML private Button start_stop_button;
-    
-    public int period = 1;
-    
-    @FXML public void startStopClicked() {
-    	
-    	Match bout = new CollegeMatch();
-    	Timer t1 = new Timer(bout.period1());
-    	//Timer t2 = new Timer(bout.period2());
-    	//Timer t3 = new Timer(bout.period3());
-    	
-    	if(period == 1)
-    		t1.startTimer(true);
-    }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-    	main_timer_label.setText("02:00");
-    }
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-}*/

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +16,8 @@ import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 	
-	Scanner scan = new Scanner(System.in);
-	
-	public String green_wrestler;
-	public String red_wrestler;
+	public static String green_wrestler;
+	public static String red_wrestler;
 
 	
 	@Override
@@ -42,6 +41,21 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+    	
+    	System.out.println("Enter Red Wrestler:");//asks for the 
+    	red_wrestler = scan.nextLine();
+    	System.out.println("Enter Green Wrestler:");
+    	green_wrestler = scan.nextLine();
+
 		launch(args);
+	}
+	//returns the name of the red wrestler
+	public String getRed() {
+		return red_wrestler;
+	}
+	//returns the name of the green wrestler
+	public String getGreen() {
+		return green_wrestler;
 	}
 }
