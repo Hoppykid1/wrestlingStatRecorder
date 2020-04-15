@@ -22,7 +22,7 @@ public class OnOffClick {
 	Match currentMatch = new CollegeMatch();
 	public String redPoints;
 	public String greenPoints;
-	public String p;										//p stands for period as in what period the match is in
+	public String p = "1";									//p stands for period as in what period the match is in
 	
 															//the ActionListener Class adds points to each wrestler's 
 	ActionListener red = new ActionListener();				//Score as the match goes on as well as keeping track of the current period
@@ -61,72 +61,72 @@ public class OnOffClick {
 	
     @FXML
     void redOne(ActionEvent event) {						//calls ActionListener to add 1 point for red on the scoreboard
-    	if (p == "1")
+    	if (p.contentEquals("1"))
     		currentMatch.setRedp1(1);
-    	if (p == "2")
+    	if (p.contentEquals("2"))
     		currentMatch.setRedp2(1);
-    	if (p == "3")
-    		currentMatch.setRedp1(1);
-    	if (p == "OT1")
-    		currentMatch.setRedp2(1);
-    	if (p == "OT2")
-    		currentMatch.setRedp1(1);
-    	if (p == "OT3")
-    		currentMatch.setRedp2(1);
-    	if (p == "OT4")
-    		currentMatch.setRedp1(1);
-    	if (p == "OT5")
-    		currentMatch.setRedp2(1);
-    	if (p == "OT6")
-    		currentMatch.setRedp1(1);
+    	if (p.contentEquals("3"))
+    		currentMatch.setRedp3(1);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setRedp4(1);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setRedp5(1);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setRedp6(1);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setRedp7(1);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setRedp8(1);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setRedp9(1);
 
     	redPoints = red.addOne();
     	red_score.setText(redPoints);
     }
     @FXML
     void redTwo(ActionEvent event) {						//calls ActionListener to add 2 points for red to the scoreboard
-    	if (p == "1")
+    	if (p.contentEquals("1"))
     		currentMatch.setRedp1(2);
-    	if (p == "2")
+    	if (p.contentEquals("2"))
     		currentMatch.setRedp2(2);
-    	if (p == "3")
-    		currentMatch.setRedp1(2);
-    	if (p == "OT1")
-    		currentMatch.setRedp2(2);
-    	if (p == "OT2")
-    		currentMatch.setRedp1(2);
-    	if (p == "OT3")
-    		currentMatch.setRedp2(2);
-    	if (p == "OT4")
-    		currentMatch.setRedp1(2);
-    	if (p == "OT5")
-    		currentMatch.setRedp2(2);
-    	if (p == "OT6")
-    		currentMatch.setRedp1(2);
+    	if (p.contentEquals("3"))
+    		currentMatch.setRedp3(2);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setRedp4(2);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setRedp5(2);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setRedp6(2);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setRedp7(2);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setRedp8(2);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setRedp9(2);
     	
     	redPoints = red.addTwo();
     	red_score.setText(redPoints);
     }
     @FXML
     void redFour(ActionEvent event) {						//calls ActionListener to add 4 points for red to the scoreboard
-    	if (p == "1")
+    	if (p.contentEquals("1"))
     		currentMatch.setRedp1(4);
-    	if (p == "2")
+    	if (p.contentEquals("2"))
     		currentMatch.setRedp2(4);
-    	if (p == "3")
-    		currentMatch.setRedp1(4);
-    	if (p == "OT1")
-    		currentMatch.setRedp2(4);
-    	if (p == "OT2")
-    		currentMatch.setRedp1(4);
-    	if (p == "OT3")
-    		currentMatch.setRedp2(4);
-    	if (p == "OT4")
-    		currentMatch.setRedp1(4);
-    	if (p == "OT5")
-    		currentMatch.setRedp2(4);
-    	if (p == "OT6")
-    		currentMatch.setRedp1(4);
+    	if (p.contentEquals("3"))
+    		currentMatch.setRedp3(4);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setRedp4(4);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setRedp5(4);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setRedp6(4);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setRedp7(4);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setRedp8(4);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setRedp9(4);
     	
     	redPoints = red.addFour();
     	red_score.setText(redPoints);
@@ -134,28 +134,124 @@ public class OnOffClick {
     
     @FXML
     void redMinus(ActionEvent event) {						//calls ActionListener to take points off the scoreboard for red
+    	if (p.contentEquals("1"))
+    		currentMatch.setRedp1(-1);
+    	if (p.contentEquals("2"))
+    		currentMatch.setRedp2(-1);
+    	if (p.contentEquals("3"))
+    		currentMatch.setRedp3(-1);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setRedp4(-1);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setRedp5(-1);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setRedp6(-1);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setRedp7(-1);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setRedp8(-1);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setRedp9(-1);
+    	
     	redPoints = red.minus();
     	red_score.setText(redPoints);
     }
     
     @FXML
     void greenOne(ActionEvent event) {						//calls ActionListener to add 1 point for green to the scoreboard
+    	if (p == "1")
+    		currentMatch.setGreenp1(1);
+    	if (p == "2")
+    		currentMatch.setGreenp2(1);
+    	if (p == "3")
+    		currentMatch.setGreenp3(1);
+    	if (p == "OT1")
+    		currentMatch.setGreenp4(1);
+    	if (p == "OT2")
+    		currentMatch.setGreenp5(1);
+    	if (p == "OT3")
+    		currentMatch.setGreenp6(1);
+    	if (p == "OT4")
+    		currentMatch.setGreenp7(1);
+    	if (p == "OT5")
+    		currentMatch.setGreenp8(1);
+    	if (p == "OT6")
+    		currentMatch.setGreenp9(1);
+    	
     	greenPoints = green.addOne();
     	green_score.setText(greenPoints);
     }
     @FXML
     void greenTwo(ActionEvent event) {						//calls ActionListener to add 2 points for green to the scoreboard
+    	if (p.contentEquals("1"))
+    		currentMatch.setGreenp1(2);
+    	if (p.contentEquals("2"))
+    		currentMatch.setGreenp2(2);
+    	if (p.contentEquals("3"))
+    		currentMatch.setGreenp3(2);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setGreenp4(2);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setGreenp5(2);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setGreenp6(2);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setGreenp7(2);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setGreenp8(2);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setGreenp9(2);
+    	
     	greenPoints = green.addTwo();
     	green_score.setText(greenPoints);
     }
     @FXML
     void greenFour(ActionEvent event) {						//calls ActionListener to add 4 points for green to the scoreboard
+    	if (p.contentEquals("1"))
+    		currentMatch.setGreenp1(4);
+    	if (p.contentEquals("2"))
+    		currentMatch.setGreenp2(4);
+    	if (p.contentEquals("3"))
+    		currentMatch.setGreenp3(4);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setGreenp4(4);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setGreenp5(4);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setGreenp6(4);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setGreenp7(4);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setGreenp8(4);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setGreenp9(4);
+    	
     	greenPoints = green.addFour();
     	green_score.setText(greenPoints);
     }
     
     @FXML
     void greenMinus(ActionEvent event) {					//calls ActionListener to take points off of the scoreboard for green
+
+    	if (p.contentEquals("1"))
+    		currentMatch.setGreenp1(-1);
+    	if (p.contentEquals("2"))
+    		currentMatch.setGreenp2(-1);
+    	if (p.contentEquals("3"))
+    		currentMatch.setGreenp3(-1);
+    	if (p.contentEquals("OT1"))
+    		currentMatch.setGreenp4(-1);
+    	if (p.contentEquals("OT2"))
+    		currentMatch.setGreenp5(-1);
+    	if (p.contentEquals("OT3"))
+    		currentMatch.setGreenp6(-1);
+    	if (p.contentEquals("OT4"))
+    		currentMatch.setGreenp7(-1);
+    	if (p.contentEquals("OT5"))
+    		currentMatch.setGreenp8(-1);
+    	if (p.contentEquals("OT6"))
+    		currentMatch.setGreenp9(-1);
+    	
     	greenPoints = green.minus();
     	green_score.setText(greenPoints);
     }
@@ -169,7 +265,14 @@ public class OnOffClick {
     @FXML													//moves the match back a period
     void back(ActionEvent event) {
     	p = period.backPeriod();
+    	System.out.println(p);
     	period_label.setText(p);
+    }
+    
+    @FXML
+    void submit_match(ActionEvent event) {
+    	currentMatch.submitMatch();
+    	currentMatch.printMatch();
     }
     
     														// This method is called by the FXMLLoader when initialization is complete

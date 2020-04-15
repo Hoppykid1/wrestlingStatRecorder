@@ -8,7 +8,6 @@ public class ActionListener {
 
     public Label counter;
     private int number;
-    CollegeMatch currentMatch = new CollegeMatch();
 
     public void addPoints(ActionEvent points) {
         counter.setText(addOne());   // prints the updated number

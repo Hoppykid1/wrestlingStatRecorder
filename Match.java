@@ -133,4 +133,8 @@ abstract class Match {
 	abstract int greenPeriod7();
 	abstract int greenPeriod8();
 	abstract int greenPeriod9();
+
+	protected abstract void submitMatch();
+
+	protected abstract void printMatch();
 }
